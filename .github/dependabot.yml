@@ -1,6 +1,17 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
+  # Primer ecosistema: npm (JavaScript)
+  - package-ecosystem: "npm"
+    directory: "/"                   # La raíz del proyecto (donde está el package.json)
+    schedule:
+      interval: "weekly"             # Frecuencia de actualizaciones: daily, weekly, monthly
+    open-pull-requests-limit: 5      # Máximo de PRs abiertos por Dependabot
+    ignore:
+      - dependency-name: "express"   # Ignora la dependencia "express"
+        versions: [">=4.0.0"]        # No propone actualizaciones de express >= 4.0.0
+
+  # Segundo ecosistema: GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"                   # Donde están tus workflows (.github/workflows/)
     schedule:
       interval: "daily"
